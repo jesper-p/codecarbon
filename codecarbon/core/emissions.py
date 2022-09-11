@@ -47,6 +47,7 @@ class Emissions:
         Returns the Country Name where the cloud region is located
         """
         df: pd.DataFrame = self._data_source.get_cloud_emissions_data()
+        print((df["provider"] == cloud.provider) & (df["region"] == cloud.region))
         return df.loc[
             (df["provider"] == cloud.provider) & (df["region"] == cloud.region)
         ]["country_name"].item()
