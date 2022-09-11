@@ -34,6 +34,8 @@ class Emissions:
 
         df: pd.DataFrame = self._data_source.get_cloud_emissions_data()
 
+        print((df["provider"] == cloud.provider) & (df["region"] == cloud.region))
+
         emissions_per_kWh: EmissionsPerKWh = EmissionsPerKWh.from_g_per_kWh(
             df.loc[(df["provider"] == cloud.provider) & (df["region"] == cloud.region)][
                 "impact"
@@ -47,7 +49,6 @@ class Emissions:
         Returns the Country Name where the cloud region is located
         """
         df: pd.DataFrame = self._data_source.get_cloud_emissions_data()
-        print((df["provider"] == cloud.provider) & (df["region"] == cloud.region))
         return df.loc[
             (df["provider"] == cloud.provider) & (df["region"] == cloud.region)
         ]["country_name"].item()
