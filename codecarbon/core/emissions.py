@@ -35,6 +35,8 @@ class Emissions:
         df: pd.DataFrame = self._data_source.get_cloud_emissions_data()
 
         print(df['impact'])
+        print(cloud.provider)
+        print(cloud.region)
 
         emissions_per_kWh: EmissionsPerKWh = EmissionsPerKWh.from_g_per_kWh(
             df.loc[(df["provider"] == cloud.provider) & (df["region"] == cloud.region)][
